@@ -1,3 +1,4 @@
+# 깃허브에서 추가하는 주석입니다. 15:51
 class Member: # 주석 추가
     def __init__(self, n, c):
         self.name = n

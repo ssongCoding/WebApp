@@ -1,4 +1,4 @@
-class Member:
+class Member: # 주석 추가
     def __init__(self, n, c):
         self.name = n
         self.count = c

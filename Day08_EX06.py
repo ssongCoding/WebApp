@@ -34,6 +34,7 @@ class Queue:
         while index <= self.rear-1:
             print(self.queue[index], end=" ")
             index = index + 1
+        # print(self.queue[self.front:self.rear])
         print()
 
 q = Queue()  # [ , , , , ]

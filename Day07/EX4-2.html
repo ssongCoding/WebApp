@@ -1,0 +1,29 @@
+
+<songa.kim@kakao.com>
+ Add Contacts
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>&lt;도서관 회원 가입&gt;</h3>
+<lable>이름 : </lable><input id="write1" type="text"><br>
+<lable>학번 : </lable><input id="write2" type="text"><br>
+<input type="button" value="가입" onclick="text_write()"><br>
+<br>
+<div id="text"></div>
+
+<script>
+function text_write(){
+var write1 = document.querySelector("#write1");
+var write2 = document.querySelector("#write2");
+var text = document.querySelector("#text");
+text.innerText = write1.value + "님(학번 : " + write2.value + ")";
+}
+</script>
+
+
+</body>
+</html>

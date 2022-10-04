@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Board</title>
+<style>
+div {
+	width: 380px;
+	height: 250px;
+	border: 1px solid purple;
+	
+	display: flex;
+	justify-content: center;
+	
+	position: absolute;
+	left: 50%;
+}
+ul {
+	list-style: none;
+}
+</style>
+</head>
+<body>
+	<div>
+		<form action="index.html">
+			<ul>
+				<li>카테고리 : <select name="category">
+				<option value="">카테고리 선택</option>
+				<option value="order">주문</option>
+				<option value="delivery">배송</option>
+				<option value="product">상품</option>
+				</select></li>
+				<li>제목 : <input id="input_title" name="title" type="text">
+				</li>
+				<li>작성자 : <input id="input_author" name="author" type="text"></li>
+				<li>날짜 : <input id="input_date" name="date" type="date"></li>
+				<li>내용 <br> <textarea id="input_content" name="content"
+						cols="30" rows="5"></textarea></li>
+				<li><input type="submit" value="등록"> <input
+					type="reset" value="취소"></li>
+			</ul>
+		</form>
+	</div>
+</body>
+</html>

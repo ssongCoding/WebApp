@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Join</title>
+<style>
+ul {
+	list-style: none;
+}
+</style>
+</head>
+<body>
+	<form action="welcome.html">
+		<ul>
+			<li>ID : <input id="input_id" name="id" type="text"> <input
+				id="btn_id" type="button" value="중복확인"></li>
+			<li>PW : <input id="input_pw" name="pw" type="text"></li>
+			<li>이름 : <input id="input_name" name="name" type="text"></li>
+			<li>성별 : <input type="radio" name="sex" value="man"> 남 <input
+				type="radio" name="sex" value="woman"> 여
+			</li>
+			<li>연락처 : <input id="input_contact" name="contact" type="text"></li>
+			<li>스타일(중복 체크가 가능합니다.)</li>
+			<li><label><input type="checkbox" name="style"
+					value="everyday"> 일상복 </label> <label><input
+					type="checkbox" name="style" value="work"> 출근복 </label> <label><input
+					type="checkbox" name="style" value="baby"> 아동복 </label> <label><input
+					type="checkbox" name="style" value="sportswear"> 운동복 </label></li>
+		</ul>
+		<input type="submit" value="회원가입">
+	</form>
+
+	<script>
+		const btn_id = document.getElementById("btn_id");
+		btn_id.addEventListener("click", idCheck);
+
+		function idCheck() {
+			const id = "test";
+			const txt_id = document.getElementById("input_id").value;
+			
+			if (txt_id == id) {
+				alert("이미 사용중인 아이디입니다.");
+			} else if (txt_id == "") {
+				alert("사용할 아이디를 입력하세요.");
+			} else if (txt_id != id) {
+				alert("사용 가능한 아이디입니다.");
+			} 
+		}
+	</script>
+
+
+
+</body>
+</html>

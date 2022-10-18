@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * DB connection, select, insert
@@ -10,23 +11,42 @@ import java.sql.SQLException;
  *
  */
 public class DBconn {
-	Connection conn; // ÀÚ¹Ù¿Í DB¸¦ ¿¬°áÇØÁÙ Åë·Î
-	PreparedStatement pstmt;
-	ResultSet rs;
+	private Connection conn; // ìë°”ì™€ DBë¥¼ ì—°ê²°í•´ì¤„ í†µë¡œ
+	private PreparedStatement pstmt;
+	private Statement stmt;
+	private ResultSet rs;
 	
 	String url = "jdbc:mysql://localhost:3306/test";
 	
 	DBconn() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("Driver ·Îµù ¼º°ø");
+			System.out.println("Driver ë¡œë”© ì„±ê³µ");
 			
 			conn = DriverManager
 					.getConnection(url, "root", "root");
-			System.out.println("DB Á¢¼Ó ¼º°ø");
+			System.out.println("DB ì ‘ì† ì„±ê³µ");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * testTable í…Œì´ë¸” ì „ì²´ ì¡°íšŒ
+	 */
+	public void findAll() {
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM testTable");
+			
+			while(rs.next()) { // ë‹¤ìŒ í–‰ ìˆì–´?
+				System.out.println(rs.getInt("id") + " " 
+						+ rs.getString("name"));
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,11 +57,13 @@ public class DBconn {
 			String sql = "INSERT INTO testTable VALUES(?,?)";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, id); // 1¹ø ?¿¡ id¸¦ ³Ö¾îÁÜ
-			pstmt.setString(2, name); // 2¹ø ?¿¡ nameÀ» ³Ö¾îÁÜ
+			pstmt.setInt(1, id); // 1ë²ˆ ?ì— idë¥¼ ë„£ì–´ì¤Œ
+			pstmt.setString(2, name); // 2ë²ˆ ?ì— nameì„ ë„£ì–´ì¤Œ
 			
 			pstmt.executeUpdate();
-			System.out.println("DB ÀúÀå ¼º°ø");
+			System.out.println("DB ì €ì¥ ì„±ê³µ");
+			
+			pstmt.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,6 +72,6 @@ public class DBconn {
 	
 	public static void main(String[] args) {
 		DBconn db = new DBconn();
-		db.save(1, "tester1");
+		db.findAll();
 	}
 }

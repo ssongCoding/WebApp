@@ -10,7 +10,7 @@ public class Member {
         this.name = name;
     }
 
-    int getmID() {
+    public int getmID() {
         return mID;
     }
 

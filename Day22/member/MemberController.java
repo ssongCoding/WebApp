@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 //@RequestMapping("/coffee")
 public class MemberController { /** Request를 받아서 Response하기 **/
@@ -14,19 +16,13 @@ public class MemberController { /** Request를 받아서 Response하기 **/
         this.memberService = memberService;
     }
 
-    @GetMapping("/")
-    String index() {
-        return "index";
-    }
-
     @GetMapping("/create")
-    String create(Model model) {
-        Member member = new Member(1, "songa"); // 가짜 객체를 만들고
+    String create(@RequestParam("id") String id, @RequestParam("name") String name, Model model) {
+        Member member = new Member(Integer.parseInt(id), name); // 가짜 객체를 만들고
         Member savedMember = memberService.save(member);                      // 객체를 서비스에게 전달하면서, 너 일 해
         model.addAttribute("member",savedMember);
         return "hello"; // view 파일 이름
     }
-
     // https://songacoding.tistory.com/3
 
 //    @GetMapping("/request")
@@ -35,5 +31,10 @@ public class MemberController { /** Request를 받아서 Response하기 **/
                    Model model) {
         model.addAttribute("nm", name);
         return "request";
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return _____;
     }
 }
